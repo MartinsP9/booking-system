@@ -65,6 +65,7 @@ export const staff = [
         "shiftEnd": ['18:00'],
         "offDates": ['2026-01-25', '2026-02-02'],
         "offDays": [6,0],
+        "bookedTimes": [{'date': '2026-01-26', 'reservedTimes': ['13:00', '13:45']}, {'date': '2026-01-28', 'reservedTimes': ['13:00', '13:45']}],
     },
     {
         "id": "ga2",
@@ -75,7 +76,7 @@ export const staff = [
         "shiftEnd": ['18:00'],
         "offDates": ['2026-01-25', '2026-02-02'],
         "offDays": [6, 0],
-        "bookedTimes": [{ "date": "2026-02-02", "time": ["16:20",] },]
+        "bookedTimes": [{'date': '2026-01-26', 'reservedTimes': ['13:00', '14:00']}, {'date': '2026-01-28', 'reservedTimes': ['13:00', '14:00']}],
     },
     
     {
@@ -87,6 +88,7 @@ export const staff = [
         "shiftEnd": ['18:00'],
         "offDates": ['2026-01-25', '2026-02-03'],
         "offDays": [6,0],
+        "bookedTimes": [{'date': '2026-01-26', 'reservedTimes': ['13:00', '14:00']}, {'date': '2026-01-28', 'reservedTimes': ['13:00', '14:00']}],
     },
     {
         "id": "ga4",
@@ -97,6 +99,7 @@ export const staff = [
         "shiftEnd": ['18:00'],
         "offDates": ['2026-01-25', '2026-02-04'],
         "offDays": [6,0],
+        "bookedTimes": [{'date': '2026-01-26', 'reservedTimes': ['13:00', '14:00']}, {'date': '2026-01-28', 'reservedTimes': ['13:00', '14:00']}],
     },
     {
         "id": "ga5",
@@ -107,6 +110,8 @@ export const staff = [
         "shiftEnd": ['18:00'],
         "offDates": ['2026-01-25', '2026-02-05'],
         "offDays": [6,0],
+        "bookedTimes": [{'date': '2026-01-26', 'reservedTimes': ['13:00', '14:00']}, {'date': '2026-01-28', 'reservedTimes': ['13:00', '14:00']}],
+    // bookedDates
     },
 ]
 

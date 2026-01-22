@@ -13,6 +13,12 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
   ]),
+  {
+    files: ["**/*.css"],
+    rules: {
+      "@stylistic/no-unknown-at-rule": "off",
+    },
+  },
 ]);
 
 export default eslintConfig;

@@ -31,8 +31,20 @@ export type FooterButtonProps = {
 }
 
 export type FooterSectionProps = {
-    serviceId: string;
+    serviceId: string | null;
     personId?: string;
-    dateId?: string;
-    timeId?: string;
+    date?: string | null;
+    time?: string | null;
 }
+
+export type PickDateProps = {
+    value?: string | null;
+    onChange: (date: string | null) => void;
+}
+
+export type PickTimeProps = {
+    selectedDate: string | null;
+    time: string | null;
+    setTime: (time: string | null) => void;
+}
+

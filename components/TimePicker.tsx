@@ -3,23 +3,49 @@
 import { staff } from "@/public/data";
 import { getTimeRange, TimeGrid } from "@mantine/dates";
 import { useSearchParams } from "next/navigation";
+import { services } from "@/public/data";
+import { PickTimeProps } from "@/lib/types";
+import { useState } from "react";
 
-export default function PickTime() {
+export default function PickTime({ selectedDate, time, setTime }: PickTimeProps) {
     const searchParams = useSearchParams();
     const personID = searchParams.get("personId") ?? "";
     const person = staff.find((p) => p.id === personID);
     const shiftStart = person?.shiftStart?.[0] ?? "";
     const shiftEnd = person?.shiftEnd?.[0] ?? "";
+    const selectedId = searchParams.get("selectedId") ?? "";
+    const service = services.find((s) => s.id === selectedId);
     const allOfTheTimes = getTimeRange({ startTime: "10:00", endTime: "14:00", interval: "00:40" });
-    const reservedTimes = ["10:40", "11:40", "14:40"];
-    // const availableTimes = allOfTheTimes.filter((time) => {
-    //     if()
-    // })
+
+    // finding the times to disable on the specific date
+    const selectedDateArray = person?.bookedTimes;
+    // console.log(selectedDateArray);
+    const bookedTimesTime = selectedDateArray?.find((d) => d.date == selectedDate);
+    const bookedTimes = bookedTimesTime?.reservedTimes;
+
+    // Find shortest offered service for the specific person for the time incrementation
+    function getShortestService() {
+        const serviceIds = person?.serviceIds;
+        let serviceArray: { duration: string }[] = [];
+        services.map((service) => {
+            if (serviceIds?.includes(service.id)) {
+                serviceArray.push(service);
+            }
+        });
+        let duration = serviceArray[0].duration;
+        for (let i = 1; i < serviceArray.length; i++) {
+            if (serviceArray[i].duration < duration) {
+                duration = serviceArray[i].duration;
+            }
+        }
+        return duration;
+    }
+    const duration = getShortestService();
 
     return (
         <TimeGrid
-            data={getTimeRange({ startTime: shiftStart, endTime: shiftEnd, interval: "00:20" })}
-            disableTime={["10:20", "11:00", "13:00"]}
+            data={getTimeRange({ startTime: shiftStart, endTime: shiftEnd, interval: duration })}
+            disableTime={bookedTimes}
             simpleGridProps={{
                 type: "container",
                 cols: { base: 1, "180px": 2, "320px": 3 },
@@ -27,6 +53,8 @@ export default function PickTime() {
             }}
             allowDeselect
             withSeconds={false}
+            onChange={setTime}
+            value={time}
         />
     );
 }
