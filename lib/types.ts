@@ -48,3 +48,10 @@ export type PickTimeProps = {
     setTime: (time: string | null) => void;
 }
 
+export type OverviewProps = {
+    serviceId: string;
+    personId?: string;
+    date?: string;
+    time?: string;
+}
+
