@@ -3,9 +3,22 @@
 import FooterButton from "./FooterButton";
 import { usePathname } from "next/navigation";
 import { FooterSectionProps } from "@/lib/types";
+import { services, staff } from "@/public/data";
 
 const Footer = ({ serviceId = "", personId = "", date = "", time = "" }: FooterSectionProps) => {
     const currentURL = usePathname() || "/";
+
+    const service = services.find((s) => serviceId == s.id);
+    const serviceTimeRaw = service?.duration ?? "";
+    const servicePrice = parseInt(service?.price ?? "");
+
+    function timeFormatter(givenTime: string) {
+        const [goo, some] = givenTime.split(":");
+        const hours = parseInt(goo);
+        const minutes = parseInt(some);
+        return [hours, minutes];
+    }
+    const [serviceHours, serviceMinutes] = timeFormatter(serviceTimeRaw);
 
     const getNextPage: Record<string, [string, string]> = {
         "/service": [`/staff?selectedId=${serviceId}`, "To Staff"],
@@ -22,9 +35,11 @@ const Footer = ({ serviceId = "", personId = "", date = "", time = "" }: FooterS
         return (
             <div className="fixed bottom-0 px-200 left-0 w-full bg-neutral-900 text-white shadow-lg p-4 flex flex-col  items-center justify-between gap-4 z-50">
                 <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-                    <span className="text-sm text-gray-400">45 min</span>
+                    <span className="text-sm text-gray-400">
+                        {serviceHours}h {serviceMinutes}min
+                    </span>
                 </div>
-                <span className="font-semibold text-lg">45 €</span>
+                <span className="font-semibold text-lg">{servicePrice} €</span>
                 <FooterButton linkTo={link} contentButton={content} />
             </div>
         );
