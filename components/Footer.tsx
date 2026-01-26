@@ -13,10 +13,18 @@ const Footer = ({ serviceId = "", personId = "", date = "", time = "" }: FooterS
     const servicePrice = parseInt(service?.price ?? "");
 
     function timeFormatter(givenTime: string) {
-        const [goo, some] = givenTime.split(":");
-        const hours = parseInt(goo);
-        const minutes = parseInt(some);
-        return [hours, minutes];
+        const [h, m] = givenTime.split(":");
+        const hours = parseInt(h, 10);
+        const minutes = parseInt(m, 10);
+        let textHours = "";
+        let textMinutes = "";
+        if (hours > 0) {
+            textHours = `${hours} h`;
+        }
+        if (minutes > 0) {
+            textMinutes = `${minutes} min`;
+        }
+        return [textHours, textMinutes];
     }
     const [serviceHours, serviceMinutes] = timeFormatter(serviceTimeRaw);
 
@@ -35,20 +43,36 @@ const Footer = ({ serviceId = "", personId = "", date = "", time = "" }: FooterS
         currentURL == "/overview"
     ) {
         return (
-            <div className="sticky w-full bottom-0 bg-neutral-900 text-white border-t border-neutral-800 p-4 flex flex-col items-center gap-3">
-                <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-                    <span className="text-sm text-gray-400">
-                        {serviceHours}h {serviceMinutes}min
-                    </span>
+            <div
+                className="
+                sticky bottom-0 w-full bg-white h-40
+                flex flex-col justify-start gap-5 pt-5
+                border-t border-neutral-200 shadow-[0_-4px_12px_rgba(0,0,0,0.20)]
+            "
+            >
+                <div className="flex flex-row justify-between px-10">
+                    <div className="">
+                        <span className="text-neutral-400 text-md">
+                            {serviceHours} {serviceMinutes}
+                        </span>
+                    </div>
+                    <span className="text-black">{servicePrice} €</span>
                 </div>
-
-                <span className="font-semibold text-lg">{servicePrice} €</span>
-
                 <FooterButton linkTo={link} contentButton={content} />
             </div>
         );
     }
-    return null;
+    return (
+        <div
+            className="
+                w-full bg-neutral-50 h-40 mt-2
+                flex items-center justify-center
+                text-neutral-300 text-sm
+            "
+        >
+            <span>Select one to continue</span>
+        </div>
+    );
 };
 
 export default Footer;

@@ -15,7 +15,7 @@ export const services = [
         "image": "haircoloring-img.png",
         "imagealt": "Person getting hair dye applied",
         "price": "70",
-        "duration": "02:00"
+        "duration": "01:30"
     },
     {
         "id": "s3",
@@ -33,7 +33,7 @@ export const services = [
         "image": "beardtrim-img.png",
         "imagealt": "Barber trimming beard",
         "price": "25",
-        "duration": "00:15"
+        "duration": "00:25"
     },
     {
         "id": "s5",
@@ -51,7 +51,7 @@ export const services = [
         "image": "kido-img.png",
         "imagealt": "Foot massage and pedicure",
         "price": "50",
-        "duration": "01:00"
+        "duration": "01:15"
     }
 ]
 
