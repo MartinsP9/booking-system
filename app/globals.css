@@ -24,3 +24,12 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.datepicker-day[data-outside] {
+  opacity: 1 !important;
+  /* color: var(--mantine-color-gray-3) !important; */
+  color: var(--mantine-color-dark-7) !important;
+}
+.datepicker-day[data-outside]:focus {
+  color: var(--mantine-color-gray-3) !important;
+}

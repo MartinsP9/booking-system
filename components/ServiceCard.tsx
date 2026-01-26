@@ -1,8 +1,8 @@
 // "use client";
-
 import { ServiceCardProps } from "@/lib/types";
 
 const ServiceCard = ({ onCardClick, title, image, imagealt, text, price, isActive = false }: ServiceCardProps) => {
+    console.log(image);
     return (
         <div
             className={`
@@ -12,10 +12,10 @@ const ServiceCard = ({ onCardClick, title, image, imagealt, text, price, isActiv
             `}
             onClick={onCardClick}
         >
-            {/* <img className="w-full h-48 object-cover rounded-lg" src={image} alt={imagealt} /> */}
-            <svg>
+            <img className="w-full h-48 object-cover rounded-lg" src={`/${image}`} alt={imagealt} />
+            {/* <svg>
                 {image},{imagealt}
-            </svg>
+            </svg> */}
             <h1 className="text-lg font-semibold text-white">{title}</h1>
             <p className=" text-sm text-white">{text}</p>
             <span className="text-base font-medium text-white">{price} $</span>

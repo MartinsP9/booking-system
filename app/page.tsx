@@ -13,6 +13,9 @@ export default function Home() {
                     <li className="mt-20">
                         <Link href="/staff">To Staff</Link>
                     </li>
+                    <li className="mt-20">
+                        <Link href="/overview">To Overview</Link>
+                    </li>
                 </ul>
             </main>
         </div>
