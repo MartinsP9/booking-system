@@ -24,22 +24,26 @@ const Footer = ({ serviceId = "", personId = "", date = "", time = "" }: FooterS
         "/service": [`/staff?selectedId=${serviceId}`, "To Staff"],
         "/staff": [`/date?selectedId=${serviceId}&personId=${personId}`, "To Date"],
         "/date": [`/overview?selectedId=${serviceId}&personId=${personId}&date=${date}&time=${time}`, "To Overview"],
+        "/overview": [`/`, "Book"],
     };
 
     const [link, content] = getNextPage[currentURL] ?? ["/service?", "To Continue"];
     if (
         (currentURL == "/service" && serviceId != "") ||
         (currentURL == "/staff" && personId != "") ||
-        (currentURL == "/date" && date != null && time != null)
+        (currentURL == "/date" && date != null && time != null) ||
+        currentURL == "/overview"
     ) {
         return (
-            <div className="fixed bottom-0 px-200 left-0 w-full bg-neutral-900 text-white shadow-lg p-4 flex flex-col  items-center justify-between gap-4 z-50">
+            <div className="sticky w-full bottom-0 bg-neutral-900 text-white border-t border-neutral-800 p-4 flex flex-col items-center gap-3">
                 <div className="flex flex-col sm:flex-row sm:items-center gap-2">
                     <span className="text-sm text-gray-400">
                         {serviceHours}h {serviceMinutes}min
                     </span>
                 </div>
+
                 <span className="font-semibold text-lg">{servicePrice} €</span>
+
                 <FooterButton linkTo={link} contentButton={content} />
             </div>
         );

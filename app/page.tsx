@@ -21,3 +21,11 @@ export default function Home() {
         </div>
     );
 }
+// !!! This automatically rederects to the services page so that we can try out how it actually works
+
+//
+// import { redirect } from "next/navigation";
+//
+// export default function Home() {
+//     redirect("/service"); // or whatever page you want
+// }

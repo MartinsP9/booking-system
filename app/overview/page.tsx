@@ -17,6 +17,7 @@ const Overview = () => {
             <BookingOverview serviceId={serviceId} personId={personId} date={date} time={time} />
             <ClientForm />
             <PriceOverview />
+            <Footer serviceId={serviceId} personId={personId} date={date} time={time} />
         </div>
     );
 };

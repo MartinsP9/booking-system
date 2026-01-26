@@ -25,16 +25,19 @@ const Service = () => {
     //     });
 
     return (
-        <main className="flex w-full flex-col items-center justify-center py-20 bg-white dark:bg-neutral-950 sm:items-start">
-            {/* <div className="m-auto">
+        <main className="flex max-w-150 m-auto flex-col items-center justify-center py-20 bg-white dark:bg-neutral-950 sm:items-start">
+            {
+                // something that they could display at the service as an add or something
+                /* <div className="m-auto">
                 <h1>Haircut</h1>
                 <p>Classic or modern look depending on your needs and requests.</p>
             </div>
             <div className="m-auto">
                 <h1>Beard trim</h1>
                 <p>Razor beard trim using hot and cold towels.</p>
-            </div> */}
-            <div className="max-w-150 flex flex-col justify-center bg-neutral-100 dark:bg-neutral-900 m-auto p-10 rounded-xl">
+            </div> */
+            }
+            <div className="w-full flex flex-col justify-center bg-neutral-100 dark:bg-neutral-900 m-auto rounded-xl">
                 <div className="p-5">
                     <h1 className="text-3xl text-black dark:text-white">Which service are you looking to book?</h1>
                 </div>
