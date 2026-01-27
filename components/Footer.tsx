@@ -29,8 +29,8 @@ const Footer = ({ serviceId = "", personId = "", date = "", time = "" }: FooterS
     const [serviceHours, serviceMinutes] = timeFormatter(serviceTimeRaw);
 
     const getNextPage: Record<string, [string, string]> = {
-        "/service": [`/staff?selectedId=${serviceId}`, "To Staff"],
-        "/staff": [`/date?selectedId=${serviceId}&personId=${personId}`, "To Date"],
+        "/service": [`/staff?selectedId=${serviceId}`, "Continue"],
+        "/staff": [`/date?selectedId=${serviceId}&personId=${personId}`, "Select Date and Time"],
         "/date": [`/overview?selectedId=${serviceId}&personId=${personId}&date=${date}&time=${time}`, "To Overview"],
         "/overview": [`/`, "Book"],
     };

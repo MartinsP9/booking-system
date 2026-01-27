@@ -25,7 +25,7 @@ const ServiceCard = ({ onCardClick, title, image, imagealt, text, price, isActiv
         <div
             className={`max-w-380px bg-white rounded-2xl shadow-md overflow-hidden mx-5 flex flex-col
                 transition-all duration-200 transform cursor-pointer
-                ${isActive ? "border-2 border-green-500 scale-97" : "border-2 border-neutral-transparent scale-95"}`}
+                ${isActive ? "border-2 border-emerald-500 scale-97" : "border-2 border-white scale-95"}`}
             onClick={onCardClick}
         >
             <div className="w-full h-48 bg-neutral-100 flex items-center justify-center">
