@@ -14,8 +14,8 @@ export default function PickDate({ value, onChange }: PickDateProps) {
     const forwardMonth = new Date();
     forwardMonth.setMonth(forwardMonth.getMonth() + 2);
 
-    // Date picker should be visible immediately
-    const [open, setOpen] = useState(true);
+    // Date picker starts closed
+    const [open, setOpen] = useState(false);
 
     const datesToExclude = (date: any) => {
         const d = new Date(date);

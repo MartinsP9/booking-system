@@ -6,15 +6,16 @@ import { FooterSectionProps } from "@/lib/types";
 import { services, staff } from "@/public/data";
 import { useBooking } from "@/lib/BookingContext";
 
-const Footer = ({ serviceId: serviceIdProp = "", personId: personIdProp = "", date: dateProp = "", time: timeProp = "" }: FooterSectionProps = {}) => {
+const Footer = ({ serviceId: serviceIdProp, personId: personIdProp, date: dateProp, time: timeProp }: FooterSectionProps = {}) => {
     const currentURL = usePathname() || "/";
     const { serviceId: serviceIdContext, personId: personIdContext, date: dateContext, time: timeContext } = useBooking();
     
-    // Use context values, fallback to props for backward compatibility
-    const serviceId = serviceIdContext || serviceIdProp;
-    const personId = personIdContext || personIdProp;
-    const date = dateContext || dateProp;
-    const time = timeContext || timeProp;
+    // On date page, always use props (even if null) to respect actual selection state
+    // Otherwise use context values, fallback to props for backward compatibility
+    const serviceId = currentURL === "/date" && serviceIdProp !== undefined ? serviceIdProp : (serviceIdContext || serviceIdProp || "");
+    const personId = currentURL === "/date" && personIdProp !== undefined ? personIdProp : (personIdContext || personIdProp || "");
+    const date = currentURL === "/date" && dateProp !== undefined ? dateProp : (dateContext || dateProp || null);
+    const time = currentURL === "/date" && timeProp !== undefined ? timeProp : (timeContext || timeProp || null);
 
     const service = services.find((s) => serviceId == s.id);
     const serviceTimeRaw = service?.duration ?? "";
