@@ -2,7 +2,12 @@ import React from "react";
 
 const ClientForm = () => {
     return (
-        <div className="max-w-md mx-auto mt-5 bg-white rounded-2xl shadow-sm border border-gray-200">
+        <form
+            className="w-full max-w-[560px] mx-auto mt-5 bg-white rounded-2xl shadow-sm border border-gray-200"
+            onSubmit={(e) => {
+                e.preventDefault();
+            }}
+        >
             <div className="px-6 py-4 border-b border-gray-200">
                 <h2 className="text-lg font-semibold text-gray-900">Personal Information</h2>
             </div>
@@ -70,8 +75,19 @@ const ClientForm = () => {
                         <span className="text-blue-600 underline cursor-pointer">User Agreement</span>
                     </p>
                 </div>
+
+                <button
+                    type="submit"
+                    className="
+                        w-full rounded-2xl bg-emerald-900 text-white
+                        py-3 text-sm font-medium
+                        hover:bg-emerald-950 transition
+                    "
+                >
+                    Submit booking
+                </button>
             </div>
-        </div>
+        </form>
     );
 };
 

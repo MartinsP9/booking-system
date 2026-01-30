@@ -63,9 +63,9 @@ export const staff = [
         "serviceIds": ["s1", "s2"],
         "shiftStart": ['13:00'],
         "shiftEnd": ['18:00'],
-        "offDates": ['2026-01-25', '2026-02-02'],
+        "offDates": ['2026-01-29', '2026-02-05'],
         "offDays": [6,0],
-        "bookedTimes": [{'date': '2026-01-26', 'reservedTimes': ['13:00', '13:45']}, {'date': '2026-01-28', 'reservedTimes': ['13:00', '13:45']}],
+        "bookedTimes": [{'date': '2026-01-29', 'reservedTimes': ['13:00', '13:45']}, {'date': '2026-01-28', 'reservedTimes': ['13:00', '13:45']}],
     },
     {
         "id": "ga2",
@@ -74,9 +74,9 @@ export const staff = [
         "serviceIds": ["s2", "s3"],
         "shiftStart": ['14:00'],
         "shiftEnd": ['18:00'],
-        "offDates": ['2026-01-25', '2026-02-02'],
+        "offDates": ['2026-01-29', '2026-02-02'],
         "offDays": [6, 0],
-        "bookedTimes": [{'date': '2026-01-26', 'reservedTimes': ['13:00', '14:00']}, {'date': '2026-01-28', 'reservedTimes': ['13:00', '14:00']}],
+        "bookedTimes": [{'date': '2026-01-29', 'reservedTimes': ['13:00', '14:00']}, {'date': '2026-01-28', 'reservedTimes': ['13:00', '14:00']}],
     },
     
     {
@@ -86,9 +86,9 @@ export const staff = [
         "serviceIds": ["s3", "s4"],
         "shiftStart": ['15:00'],
         "shiftEnd": ['18:00'],
-        "offDates": ['2026-01-25', '2026-02-03'],
+        "offDates": ['2026-01-28', '2026-02-03'],
         "offDays": [6,0],
-        "bookedTimes": [{'date': '2026-01-26', 'reservedTimes': ['13:00', '14:00']}, {'date': '2026-01-28', 'reservedTimes': ['13:00', '14:00']}],
+        "bookedTimes": [{'date': '2026-01-29', 'reservedTimes': ['13:00', '14:00']}, {'date': '2026-01-28', 'reservedTimes': ['13:00', '14:00']}],
     },
     {
         "id": "ga4",
@@ -97,9 +97,9 @@ export const staff = [
         "serviceIds": ["s4", "s5"],
         "shiftStart": ['16:00'],
         "shiftEnd": ['18:00'],
-        "offDates": ['2026-01-25', '2026-02-04'],
+        "offDates": ['2026-01-28', '2026-02-04'],
         "offDays": [6,0],
-        "bookedTimes": [{'date': '2026-01-26', 'reservedTimes': ['13:00', '14:00']}, {'date': '2026-01-28', 'reservedTimes': ['13:00', '14:00']}],
+        "bookedTimes": [{'date': '2026-01-29', 'reservedTimes': ['13:00', '14:00']}, {'date': '2026-01-28', 'reservedTimes': ['13:00', '14:00']}],
     },
     {
         "id": "ga5",
@@ -108,9 +108,9 @@ export const staff = [
         "serviceIds": ["s5", "s6"],
         "shiftStart": ['15:00'],
         "shiftEnd": ['18:00'],
-        "offDates": ['2026-01-25', '2026-02-05'],
+        "offDates": ['2026-01-28', '2026-02-05'],
         "offDays": [6,0],
-        "bookedTimes": [{'date': '2026-01-26', 'reservedTimes': ['13:00', '14:00']}, {'date': '2026-01-28', 'reservedTimes': ['13:00', '14:00']}],
+        "bookedTimes": [{'date': '2026-01-29', 'reservedTimes': ['13:00', '14:00']}, {'date': '2026-01-28', 'reservedTimes': ['13:00', '14:00']}],
     // bookedDates
     },
 ]

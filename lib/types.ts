@@ -31,7 +31,7 @@ export type FooterButtonProps = {
 }
 
 export type FooterSectionProps = {
-    serviceId: string | null;
+    serviceId?: string | null;
     personId?: string;
     date?: string | null;
     time?: string | null;

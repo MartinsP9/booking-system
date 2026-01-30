@@ -4,6 +4,7 @@ import "./globals.css";
 
 // added
 import TemporaryURL from "@/components/TemporaryURL";
+import BookingProviderWrapper from "@/components/BookingProviderWrapper";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -29,7 +30,7 @@ export default function RootLayout({
         <html lang="en">
             <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
                 {/* <TemporaryURL /> */}
-                {children}
+                <BookingProviderWrapper>{children}</BookingProviderWrapper>
             </body>
         </html>
     );

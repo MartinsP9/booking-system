@@ -23,9 +23,9 @@ const ServiceCard = ({ onCardClick, title, image, imagealt, text, price, isActiv
     // );
     return (
         <div
-            className={`max-w-380px bg-white rounded-2xl shadow-md overflow-hidden mx-5 flex flex-col
-                transition-all duration-200 transform cursor-pointer
-                ${isActive ? "border-2 border-emerald-500 scale-97" : "border-2 border-white scale-95"}`}
+            className={`w-full max-w-[420px] bg-white rounded-2xl shadow-md overflow-hidden mx-auto flex flex-col
+                transition-all duration-200 cursor-pointer
+                ${isActive ? "border-2 border-emerald-500" : "border-2 border-white"}`}
             onClick={onCardClick}
         >
             <div className="w-full h-48 bg-neutral-100 flex items-center justify-center">
@@ -39,7 +39,7 @@ const ServiceCard = ({ onCardClick, title, image, imagealt, text, price, isActiv
 
                 <p className="text-sm text-neutral-700 text-center leading-relaxed">{text}</p>
 
-                <span className="text-lg font-semibold text-neutral-900 text-center mt-2">{price} $</span>
+                <span className="text-lg font-semibold text-neutral-900 text-center mt-2">{price} €</span>
             </div>
         </div>
     );

@@ -15,7 +15,7 @@ const BookingOverview = ({ serviceId, personId, date, time }: OverviewProps) => 
     // const dateFormat = new Date(date);
     const reservedTime = time;
     return (
-        <div className="max-w-md mx-auto mt-6 bg-white rounded-2xl shadow-sm border border-gray-200">
+        <div className="w-full max-w-[560px] mx-auto mt-6 bg-white rounded-2xl shadow-sm border border-gray-200">
             {/* Header */}
             <div className="px-6 py-4 border-b border-gray-200">
                 <h2 className="text-lg font-semibold text-gray-900">Booking Details</h2>

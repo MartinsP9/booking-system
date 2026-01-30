@@ -4,20 +4,26 @@ import BookingOverview from "@/components/BookingOverview";
 import ClientForm from "@/components/ClientForm";
 import Footer from "@/components/Footer";
 import PriceOverview from "@/components/PriceOverview";
-import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { useBooking } from "@/lib/BookingContext";
 
 const Overview = () => {
-    const searchParams = useSearchParams();
-    const serviceId = searchParams.get("selectedId") ?? "";
-    const personId = searchParams.get("personId") ?? "";
-    const date = searchParams.get("date") ?? "";
-    const time = searchParams.get("time") ?? "";
+    const router = useRouter();
+    const { serviceId, personId, date, time } = useBooking();
+
+    useEffect(() => {
+        if (!serviceId) {
+            router.push("/service");
+        }
+    }, [serviceId, router]);
+
     return (
         <div>
-            <BookingOverview serviceId={serviceId} personId={personId} date={date} time={time} />
+            <BookingOverview serviceId={serviceId || ""} personId={personId || ""} date={date || ""} time={time || ""} />
             <ClientForm />
             <PriceOverview />
-            <Footer serviceId={serviceId} personId={personId} date={date} time={time} />
+            <Footer />
         </div>
     );
 };
