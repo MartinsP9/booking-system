@@ -2,8 +2,6 @@
 
 import BookingOverview from "@/components/BookingOverview";
 import ClientForm from "@/components/ClientForm";
-import Footer from "@/components/Footer";
-import PriceOverview from "@/components/PriceOverview";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useBooking } from "@/lib/BookingContext";
@@ -19,12 +17,24 @@ const Overview = () => {
     }, [serviceId, router]);
 
     return (
-        <div>
-            <BookingOverview serviceId={serviceId || ""} personId={personId || ""} date={date || ""} time={time || ""} />
-            <ClientForm />
-            <PriceOverview />
-            <Footer />
-        </div>
+        <main className="min-h-screen bg-neutral-200 pt-10 flex justify-center">
+            <div className="w-full max-w-150 bg-neutral-50 flex flex-col rounded-t-3xl min-h-[calc(100vh-2.5rem)]">
+                <div className="p-5">
+                    <h1 className="text-black text-2xl font-bold">Barber Shop Number Uno</h1>
+                </div>
+                <div className="border-t border-neutral-300"></div>
+        
+                <div className="flex-1 flex flex-col gap-6 p-5 pb-10">
+                    <BookingOverview 
+                        serviceId={serviceId || ""} 
+                        personId={personId || ""} 
+                        date={date || ""} 
+                        time={time || ""} 
+                    />
+                    <ClientForm />
+                </div>
+            </div>
+        </main>
     );
 };
 

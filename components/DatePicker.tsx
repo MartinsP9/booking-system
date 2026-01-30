@@ -11,61 +11,141 @@ export default function PickDate({ value, onChange }: PickDateProps) {
     // const [value, setValue] = useState<string | null>(null);
     const { personId } = useBooking();
     const person = staff.find((p) => p.id === personId);
-    const offDays = person?.offDays ?? [];
-    const offDates = person?.offDates ?? [];
     const forwardMonth = new Date();
     forwardMonth.setMonth(forwardMonth.getMonth() + 2);
 
     // Date picker should be visible immediately
     const [open, setOpen] = useState(true);
 
-    const datesToExclude = (date: string) => {
-        const weekend = offDays.includes(new Date(date).getDay());
-        const notWorking = offDates.includes(date);
-        return weekend || notWorking;
+    const datesToExclude = (date: any) => {
+        const d = new Date(date);
+        const dayOfWeek = d.getDay();
+        const shifts = person?.shifts;
+        const isOffDay = shifts ? shifts[dayOfWeek] === null : false;
+        
+        const year = d.getFullYear();
+        const month = String(d.getMonth() + 1).padStart(2, '0');
+        const day = String(d.getDate()).padStart(2, '0');
+        const dateString = `${year}-${month}-${day}`;
+        const isOffDate = person?.offDates?.includes(dateString);
+        
+        return !!(isOffDay || isOffDate);
+    };
+
+    const formatDisplayDate = (dateString: string | null | undefined) => {
+        if (!dateString) return "Tap to choose a date";
+        try {
+            const [year, month, day] = dateString.split("-");
+            const date = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+            return date.toLocaleDateString("en-US", { 
+                weekday: "long", 
+                year: "numeric", 
+                month: "long", 
+                day: "numeric" 
+            });
+        } catch {
+            return dateString;
+        }
     };
 
     return (
-        <Stack
-            gap="sm"
-            style={{
-                maxWidth: 320,
-                margin: "0 auto",
-                alignItems: "center",
-                textAlign: "center",
-                width: "100%",
-            }}
-        >
-            <Text fw={500}>Select a date</Text>
+        <div className="w-full max-w-[560px] mx-auto bg-white rounded-2xl shadow-lg border border-neutral-200 overflow-hidden">
+            {/* Header */}
+            <div className="px-6 py-5 bg-gradient-to-r from-neutral-50 to-white border-b border-neutral-200">
+                <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-neutral-100 flex items-center justify-center">
+                        <svg 
+                            className="w-5 h-5 text-neutral-600" 
+                            fill="none" 
+                            stroke="currentColor" 
+                            viewBox="0 0 24 24"
+                        >
+                            <path 
+                                strokeLinecap="round" 
+                                strokeLinejoin="round" 
+                                strokeWidth={2} 
+                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" 
+                            />
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 className="text-xl font-bold text-neutral-900">Select Date</h2>
+                        <p className="text-sm text-neutral-600 mt-0.5">Choose your preferred appointment date</p>
+                    </div>
+                </div>
+            </div>
 
-            <button
-                type="button"
-                className="w-full max-w-xs rounded-xl border border-neutral-300 bg-white px-4 py-3 text-center text-neutral-900 shadow-sm"
-                onClick={() => setOpen(true)}
-            >
-                {value ? value : "Tap to choose a date"}
-            </button>
+            {/* Date Display Button */}
+            <div className="px-6 py-6">
+                <button
+                    type="button"
+                    className="w-full rounded-xl border-2 border-neutral-200 bg-white px-4 py-4 text-left text-neutral-900 shadow-sm hover:border-neutral-300 hover:shadow-md transition-all duration-200 flex items-center justify-between group"
+                    onClick={() => setOpen(!open)}
+                >
+                    <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-lg bg-neutral-100 flex items-center justify-center group-hover:bg-neutral-200 transition-colors">
+                            <svg 
+                                className="w-4 h-4 text-neutral-600" 
+                                fill="none" 
+                                stroke="currentColor" 
+                                viewBox="0 0 24 24"
+                            >
+                                <path 
+                                    strokeLinecap="round" 
+                                    strokeLinejoin="round" 
+                                    strokeWidth={2} 
+                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" 
+                                />
+                            </svg>
+                        </div>
+                        <span className={`text-base font-medium ${value ? "text-neutral-900" : "text-neutral-500"}`}>
+                            {formatDisplayDate(value || null)}
+                        </span>
+                    </div>
+                    <svg 
+                        className={`w-5 h-5 text-neutral-400 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24"
+                    >
+                        <path 
+                            strokeLinecap="round" 
+                            strokeLinejoin="round" 
+                            strokeWidth={2} 
+                            d="M19 9l-7 7-7-7" 
+                        />
+                    </svg>
+                </button>
 
-            {open && (
-                <DatePicker
-                    value={value}
-                    onChange={(d) => {
-                        if (!d) {
-                            onChange(null);
-                            return;
-                        }
-                        onChange(d);
-                        setOpen(false);
-                    }}
-                    excludeDate={datesToExclude}
-                    minDate={new Date()}
-                    maxDate={forwardMonth}
-                    classNames={{
-                        day: "datepicker-day",
-                    }}
-                    allowDeselect={true}
-                />
-            )}
-        </Stack>
+                {/* Date Picker */}
+                {open && (
+                    <div className="mt-6 pb-2">
+                        <DatePicker
+                            value={value as any}
+                            onChange={(d: any) => {
+                                if (!d) {
+                                    onChange(null);
+                                    return;
+                                }
+                                const dateObj = new Date(d);
+                                const year = dateObj.getFullYear();
+                                const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+                                const day = String(dateObj.getDate()).padStart(2, '0');
+                                const formattedDate = `${year}-${month}-${day}`;
+                                onChange(formattedDate);
+                                setOpen(false);
+                            }}
+                            excludeDate={datesToExclude}
+                            minDate={new Date()}
+                            maxDate={forwardMonth}
+                            classNames={{
+                                day: "datepicker-day",
+                            }}
+                            allowDeselect={true}
+                        />
+                    </div>
+                )}
+            </div>
+        </div>
     );
 }

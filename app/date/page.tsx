@@ -10,8 +10,10 @@ import { useBooking } from "@/lib/BookingContext";
 export default function Date() {
     const router = useRouter();
     const { serviceId, personId, date: contextDate, time: contextTime, setDate: setContextDate, setTime: setContextTime } = useBooking();
-    const [date, setDate] = useState<string | null>(contextDate);
-    const [time, setTime] = useState<string | null>(contextTime);
+    const [date, setDate] = useState<string | null>(null);
+    const [time, setTime] = useState<string | null>(null);
+    const [hasSelectedDate, setHasSelectedDate] = useState(false);
+    const [hasSelectedTime, setHasSelectedTime] = useState(false);
 
     useEffect(() => {
         if (!serviceId) {
@@ -22,11 +24,17 @@ export default function Date() {
     }, [serviceId, personId, router]);
 
     useEffect(() => {
-        setContextDate(date);
+        if (date) {
+            setContextDate(date);
+            setHasSelectedDate(true);
+        }
     }, [date, setContextDate]);
 
     useEffect(() => {
-        setContextTime(time);
+        if (time) {
+            setContextTime(time);
+            setHasSelectedTime(true);
+        }
     }, [time, setContextTime]);
 
     return (
@@ -45,11 +53,19 @@ export default function Date() {
                             // If date changes, clear any previously selected time
                             setTime(null);
                             setContextTime(null);
+                            setHasSelectedTime(false);
                         }}
                     />
-                    {date ? <PickTime selectedDate={date} time={time} setTime={setTime} /> : null}
+                    {date && (
+                        <div className="mt-2">
+                            <PickTime selectedDate={date} time={time} setTime={(t) => {
+                                setTime(t);
+                                if (t) setHasSelectedTime(true);
+                            }} />
+                        </div>
+                    )}
                 </div>
-                <Footer />
+                <Footer date={hasSelectedDate ? date : null} time={hasSelectedTime ? time : null} />
             </div>
         </main>
     );

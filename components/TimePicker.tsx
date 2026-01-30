@@ -7,20 +7,22 @@ import { services } from "@/public/data";
 import { PickTimeProps } from "@/lib/types";
 
 export default function PickTime({ selectedDate, time, setTime }: PickTimeProps) {
-    // Don’t allow picking a time before a date is chosen
+    // Don't allow picking a time before a date is chosen
     if (!selectedDate) return null;
 
     const { personId, serviceId } = useBooking();
     const person = staff.find((p) => p.id === personId);
-    const shiftStart = person?.shiftStart?.[0] ?? "";
-    const shiftEnd = person?.shiftEnd?.[0] ?? "";
+    const [y, m, d] = selectedDate ? selectedDate.split("-").map(Number) : [0, 0, 0];
+    const dayOfWeek = selectedDate ? new Date(y, m - 1, d).getDay() : 0;
+    const shift = person?.shifts?.[dayOfWeek];
+    const shiftStart = shift?.start ?? "";
+    const shiftEnd = shift?.end ?? "";
     const service = services.find((s) => s.id === serviceId);
 
     // finding the times to disable on the specific date
-    const selectedDateArray = person?.bookedTimes;
-    // console.log(selectedDateArray);
-    const bookedTimesObject = selectedDateArray?.find((d) => d.date == selectedDate);
-    const bookedTimes = bookedTimesObject?.reservedTimes;
+    const bookedTimes = person?.events
+        ?.filter((event) => event.start.startsWith(selectedDate ?? ""))
+        ?.map((event) => event.start.split("T")[1].slice(0, 5));
 
     // Find shortest offered service for the specific person for the time incrementation
     function getShortestService() {
@@ -42,25 +44,59 @@ export default function PickTime({ selectedDate, time, setTime }: PickTimeProps)
     const duration = getShortestService();
     
 
-    // If a reserved time can’t be clicked, it also shouldn’t be displayed.
+    // If a reserved time can't be clicked, it also shouldn't be displayed.
     const toHHmm = (t: string) => t.slice(0, 5);
     const data = getTimeRange({ startTime: shiftStart, endTime: shiftEnd, interval: duration}).map(toHHmm).filter((t) => !bookedTimes?.includes(t));
+    
     return (
-        <TimeGrid
-            data={data}
-            simpleGridProps={{
-                type: "container",
-                cols: { base: 1, "180px": 2, "320px": 3 },
-                spacing: "xs",
-            }}
-            allowDeselect
-            withSeconds={false}
-            onChange={setTime}
-            value={time}
-        />
+        <div className="w-full max-w-[560px] mx-auto bg-white rounded-2xl shadow-lg border border-neutral-200 overflow-hidden">
+            {/* Header */}
+            <div className="px-6 py-5 bg-gradient-to-r from-neutral-50 to-white border-b border-neutral-200">
+                <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-neutral-100 flex items-center justify-center">
+                        <svg 
+                            className="w-5 h-5 text-neutral-600" 
+                            fill="none" 
+                            stroke="currentColor" 
+                            viewBox="0 0 24 24"
+                        >
+                            <path 
+                                strokeLinecap="round" 
+                                strokeLinejoin="round" 
+                                strokeWidth={2} 
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" 
+                            />
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 className="text-xl font-bold text-neutral-900">Select Time</h2>
+                        <p className="text-sm text-neutral-600 mt-0.5">Choose your preferred appointment time</p>
+                    </div>
+                </div>
+            </div>
+
+            {/* Time Grid */}
+            <div className="px-6 py-6">
+                {data.length > 0 ? (
+                    <TimeGrid
+                        data={data}
+                        simpleGridProps={{
+                            type: "container",
+                            cols: { base: 2, "180px": 3, "320px": 4 },
+                            spacing: "sm",
+                        }}
+                        allowDeselect
+                        withSeconds={false}
+                        onChange={setTime}
+                        value={time}
+                    />
+                ) : (
+                    <div className="text-center py-8">
+                        <p className="text-neutral-500 text-sm">No available times for this date</p>
+                        <p className="text-neutral-400 text-xs mt-1">Please select a different date</p>
+                    </div>
+                )}
+            </div>
+        </div>
     );
 }
-
-// function WithArray() {
-//     return <TimeGrid data={["10:00", "12:00"]} />;
-// }

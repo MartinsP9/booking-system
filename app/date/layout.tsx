@@ -1,20 +1,31 @@
-// mantine
+import { createTheme, MantineProvider, ColorSchemeScript } from "@mantine/core";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
 
-import { MantineProvider, ColorSchemeScript } from "@mantine/core";
+const theme = createTheme({
+  colors: {
+    customGreen: [
+      "#004f3b",
+      "#004f3b",
+      "#004f3b",
+      "#004f3b",
+      "#004f3b",
+      "#004f3b",
+      "#004f3b",
+      "#004f3b",
+      "#004f3b",
+      "#004f3b", // shade 9 (darkest, your color)
+    ],
+  },
+  primaryColor: "customGreen",
+});
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-    return (
-        <div>
-            <MantineProvider
-                theme={{
-                    primaryColor: "blue",
-                    
-                }}
-            >
-                {children}
-            </MantineProvider>
-        </div>
-    );
+  return (
+    <div>
+      <MantineProvider theme={theme}>
+        {children}
+      </MantineProvider>
+    </div>
+  );
 }

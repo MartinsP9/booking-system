@@ -55,30 +55,32 @@ const Footer = ({ serviceId: serviceIdProp = "", personId: personIdProp = "", da
 
     return (
         <div
-            className="
-                fixed bottom-0 left-0 right-0 z-50
-                flex justify-center
-                px-0
-            "
+            className="fixed bottom-0 left-0 right-0 z-50 flex justify-center px-0"
         >
             <div
-                className="
-                    w-full max-w-150
-                    bg-white
-                    flex flex-col justify-start gap-3 pt-3 pb-4
-                    border-t border-neutral-200 shadow-[0_-2px_10px_rgba(0,0,0,0.10)]
-                    rounded-t-3xl
-                "
+                className="w-full max-w-150 bg-white flex flex-col gap-4 pt-4 pb-6 border-t border-neutral-200 shadow-[0_-4px_20px_rgba(0,0,0,0.12)] rounded-t-3xl"
             >
-                <div className="flex flex-row justify-between px-6">
-                    <div className="">
-                        <span className="text-neutral-400 text-sm">
+                {/* Summary Section */}
+                <div className="flex flex-row justify-between items-center px-6">
+                    <div className="flex flex-col">
+                        <span className="text-xs text-neutral-500 uppercase tracking-wide">Duration</span>
+                        <span className="text-lg font-bold text-neutral-900">
                             {serviceHours} {serviceMinutes}
                         </span>
                     </div>
-                    <span className="text-black text-sm font-medium">{servicePrice} €</span>
+                    <div className="flex flex-col items-end">
+                        <span className="text-xs text-neutral-500 uppercase tracking-wide">Total</span>
+                        <span className="text-lg font-bold text-neutral-900">{servicePrice} €</span>
+                    </div>
                 </div>
-                <FooterButton linkTo={link} contentButton={content} />
+
+                {/* Divider */}
+                <div className="border-t border-neutral-100 mx-6"></div>
+
+                {/* Button */}
+                <div className="px-6">
+                    <FooterButton linkTo={link} contentButton={content} />
+                </div>
             </div>
         </div>
     );
