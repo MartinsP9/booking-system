@@ -4,6 +4,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { OverviewProps } from "@/lib/types";
 import { services, staff } from "@/public/data";
+import { UserIcon, EditIcon, CalendarIcon, ClockIcon } from "@/components/icons";
 
 const BookingOverview = ({ serviceId, personId, date, time }: OverviewProps) => {
     const router = useRouter();
@@ -49,19 +50,7 @@ const BookingOverview = ({ serviceId, personId, date, time }: OverviewProps) => 
                 <div className="flex items-start justify-between group">
                     <div className="flex items-start gap-4 flex-1">
                         <div className="flex-shrink-0 w-10 h-10 rounded-full bg-neutral-100 flex items-center justify-center">
-                            <svg 
-                                className="w-5 h-5 text-neutral-600" 
-                                fill="none" 
-                                stroke="currentColor" 
-                                viewBox="0 0 24 24"
-                            >
-                                <path 
-                                    strokeLinecap="round" 
-                                    strokeLinejoin="round" 
-                                    strokeWidth={2} 
-                                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" 
-                                />
-                            </svg>
+                            <UserIcon className="w-5 h-5 text-neutral-600" />
                         </div>
                         <div className="flex-1 min-w-0">
                             <p className="text-xs font-medium text-neutral-500 uppercase tracking-wide mb-1">
@@ -82,19 +71,7 @@ const BookingOverview = ({ serviceId, personId, date, time }: OverviewProps) => 
                         className="p-2 hover:bg-neutral-100 rounded-full transition-colors flex-shrink-0"
                         aria-label="Edit staff member"
                     >
-                        <svg 
-                            className="w-5 h-5 text-neutral-600" 
-                            fill="none" 
-                            stroke="currentColor" 
-                            viewBox="0 0 24 24"
-                        >
-                            <path 
-                                strokeLinecap="round" 
-                                strokeLinejoin="round" 
-                                strokeWidth={2} 
-                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" 
-                            />
-                        </svg>
+                        <EditIcon className="w-5 h-5 text-neutral-600" />
                     </button>
                 </div>
 
@@ -102,19 +79,7 @@ const BookingOverview = ({ serviceId, personId, date, time }: OverviewProps) => 
                 <div className="flex items-start justify-between group">
                     <div className="flex items-start gap-4 flex-1">
                         <div className="flex-shrink-0 w-10 h-10 rounded-full bg-neutral-100 flex items-center justify-center">
-                            <svg 
-                                className="w-5 h-5 text-neutral-600" 
-                                fill="none" 
-                                stroke="currentColor" 
-                                viewBox="0 0 24 24"
-                            >
-                                <path 
-                                    strokeLinecap="round" 
-                                    strokeLinejoin="round" 
-                                    strokeWidth={2} 
-                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" 
-                                />
-                            </svg>
+                            <CalendarIcon className="w-5 h-5 text-neutral-600" />
                         </div>
                         <div className="flex-1 min-w-0">
                             <p className="text-xs font-medium text-neutral-500 uppercase tracking-wide mb-1">
@@ -127,19 +92,7 @@ const BookingOverview = ({ serviceId, personId, date, time }: OverviewProps) => 
                                     </p>
                                     {reservedTime && (
                                         <div className="flex items-center gap-2 mt-1">
-                                            <svg 
-                                                className="w-4 h-4 text-neutral-500" 
-                                                fill="none" 
-                                                stroke="currentColor" 
-                                                viewBox="0 0 24 24"
-                                            >
-                                                <path 
-                                                    strokeLinecap="round" 
-                                                    strokeLinejoin="round" 
-                                                    strokeWidth={2} 
-                                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" 
-                                                />
-                                            </svg>
+                                            <ClockIcon className="w-4 h-4 text-neutral-500" />
                                             <p className="text-sm text-neutral-600 font-medium">
                                                 {reservedTime}
                                             </p>
@@ -156,19 +109,7 @@ const BookingOverview = ({ serviceId, personId, date, time }: OverviewProps) => 
                         className="p-2 hover:bg-neutral-100 rounded-full transition-colors flex-shrink-0"
                         aria-label="Edit date and time"
                     >
-                        <svg 
-                            className="w-5 h-5 text-neutral-600" 
-                            fill="none" 
-                            stroke="currentColor" 
-                            viewBox="0 0 24 24"
-                        >
-                            <path 
-                                strokeLinecap="round" 
-                                strokeLinejoin="round" 
-                                strokeWidth={2} 
-                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" 
-                            />
-                        </svg>
+                        <EditIcon className="w-5 h-5 text-neutral-600" />
                     </button>
                 </div>
             </div>

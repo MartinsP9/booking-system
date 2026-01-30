@@ -20,24 +20,6 @@ const Service = () => {
             setServiceId(id);
         }
     };
-    //  someting to sort by services...
-    //     const rawServices = services;
-    //     let usableServices = rawServices.filter((service) => {
-    //         if (service.title.includes("Hair") || service.title.includes("hair")) {
-    //
-    //         }
-    //
-    //     });
-
-    // something that they could display at the service as an add or something
-    /* <div className="m-auto">
-            <h1>Haircut</h1>
-            <p>Classic or modern look depending on your needs and requests.</p>
-        </div>
-        <div className="m-auto">
-            <h1>Beard trim</h1>
-            <p>Razor beard trim using hot and cold towels.</p>
-        </div> */
 
     return (
         <main className="min-h-screen bg-neutral-200 pt-10 flex justify-center">

@@ -6,9 +6,9 @@ import { Stack, Text } from "@mantine/core";
 import { staff } from "@/public/data";
 import { PickDateProps } from "@/lib/types";
 import { useBooking } from "@/lib/BookingContext";
+import { CalendarIcon, ChevronDownIcon } from "@/components/icons";
 
 export default function PickDate({ value, onChange }: PickDateProps) {
-    // const [value, setValue] = useState<string | null>(null);
     const { personId } = useBooking();
     const person = staff.find((p) => p.id === personId);
     const forwardMonth = new Date();
@@ -54,19 +54,7 @@ export default function PickDate({ value, onChange }: PickDateProps) {
             <div className="px-6 py-5 bg-gradient-to-r from-neutral-50 to-white border-b border-neutral-200">
                 <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-neutral-100 flex items-center justify-center">
-                        <svg 
-                            className="w-5 h-5 text-neutral-600" 
-                            fill="none" 
-                            stroke="currentColor" 
-                            viewBox="0 0 24 24"
-                        >
-                            <path 
-                                strokeLinecap="round" 
-                                strokeLinejoin="round" 
-                                strokeWidth={2} 
-                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" 
-                            />
-                        </svg>
+                        <CalendarIcon className="w-5 h-5 text-neutral-600" />
                     </div>
                     <div>
                         <h2 className="text-xl font-bold text-neutral-900">Select Date</h2>
@@ -84,37 +72,13 @@ export default function PickDate({ value, onChange }: PickDateProps) {
                 >
                     <div className="flex items-center gap-3">
                         <div className="w-8 h-8 rounded-lg bg-neutral-100 flex items-center justify-center group-hover:bg-neutral-200 transition-colors">
-                            <svg 
-                                className="w-4 h-4 text-neutral-600" 
-                                fill="none" 
-                                stroke="currentColor" 
-                                viewBox="0 0 24 24"
-                            >
-                                <path 
-                                    strokeLinecap="round" 
-                                    strokeLinejoin="round" 
-                                    strokeWidth={2} 
-                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" 
-                                />
-                            </svg>
+                            <CalendarIcon className="w-4 h-4 text-neutral-600" />
                         </div>
                         <span className={`text-base font-medium ${value ? "text-neutral-900" : "text-neutral-500"}`}>
                             {formatDisplayDate(value || null)}
                         </span>
                     </div>
-                    <svg 
-                        className={`w-5 h-5 text-neutral-400 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
-                        fill="none" 
-                        stroke="currentColor" 
-                        viewBox="0 0 24 24"
-                    >
-                        <path 
-                            strokeLinecap="round" 
-                            strokeLinejoin="round" 
-                            strokeWidth={2} 
-                            d="M19 9l-7 7-7-7" 
-                        />
-                    </svg>
+                    <ChevronDownIcon className={`w-5 h-5 text-neutral-400 transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
                 </button>
 
                 {/* Date Picker */}

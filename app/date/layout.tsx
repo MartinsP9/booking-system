@@ -1,4 +1,4 @@
-import { createTheme, MantineProvider, ColorSchemeScript } from "@mantine/core";
+import { createTheme, MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
 
@@ -14,7 +14,7 @@ const theme = createTheme({
       "#004f3b",
       "#004f3b",
       "#004f3b",
-      "#004f3b", // shade 9 (darkest, your color)
+      "#004f3b",
     ],
   },
   primaryColor: "customGreen",

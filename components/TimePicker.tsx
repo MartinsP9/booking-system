@@ -5,6 +5,7 @@ import { getTimeRange, TimeGrid } from "@mantine/dates";
 import { useBooking } from "@/lib/BookingContext";
 import { services } from "@/public/data";
 import { PickTimeProps } from "@/lib/types";
+import { ClockIcon } from "@/components/icons";
 
 export default function PickTime({ selectedDate, time, setTime }: PickTimeProps) {
     // Don't allow picking a time before a date is chosen
@@ -54,19 +55,7 @@ export default function PickTime({ selectedDate, time, setTime }: PickTimeProps)
             <div className="px-6 py-5 bg-gradient-to-r from-neutral-50 to-white border-b border-neutral-200">
                 <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-neutral-100 flex items-center justify-center">
-                        <svg 
-                            className="w-5 h-5 text-neutral-600" 
-                            fill="none" 
-                            stroke="currentColor" 
-                            viewBox="0 0 24 24"
-                        >
-                            <path 
-                                strokeLinecap="round" 
-                                strokeLinejoin="round" 
-                                strokeWidth={2} 
-                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" 
-                            />
-                        </svg>
+                        <ClockIcon className="w-5 h-5 text-neutral-600" />
                     </div>
                     <div>
                         <h2 className="text-xl font-bold text-neutral-900">Select Time</h2>

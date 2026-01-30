@@ -1,5 +1,3 @@
-import React from "react";
-
 const ClientForm = () => {
     return (
         <form
@@ -52,17 +50,6 @@ const ClientForm = () => {
                         className="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />
                 </div>
-
-                {/* <div className="flex items-center justify-between pt-2">
-                    <div>
-                        <p className="text-sm text-gray-500">Reminder</p>
-                        <p className="text-sm font-medium text-gray-900">Per 2 hours prior to visit</p>
-                    </div>
-
-                    <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                    </svg>
-                </div> */}
 
                 <div className="pt-3 border-t border-gray-200"></div>
 
