@@ -5,6 +5,22 @@ export type Service = {
     description?: string;
 };
 
+export type Shift = {
+    start: string;
+    end: string;
+};
+
+export type BookingEvent = {
+    start: string; // ISO string
+    end: string;   // ISO string
+    user: {
+        name: string;
+        email?: string;
+        phone?: string;
+    };
+    serviceId: string;
+};
+
 export type Person = {
     onPersonClick?: () => void;
     id: string;
@@ -12,6 +28,9 @@ export type Person = {
     languages: string[];
     serviceIds: string[];
     isActive: boolean;
+    shifts: { [key: number]: Shift | null }; // 0-6 for Sunday-Saturday
+    events: BookingEvent[];
+    offDates: string[]; // YYYY-MM-DD
 };
 
 export type ServiceCardProps = {
@@ -31,7 +50,7 @@ export type FooterButtonProps = {
 }
 
 export type FooterSectionProps = {
-    serviceId: string | null;
+    serviceId?: string | null;
     personId?: string;
     date?: string | null;
     time?: string | null;

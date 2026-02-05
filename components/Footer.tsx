@@ -4,47 +4,90 @@ import FooterButton from "./FooterButton";
 import { usePathname } from "next/navigation";
 import { FooterSectionProps } from "@/lib/types";
 import { services, staff } from "@/public/data";
+import { useBookingStore } from "@/lib/useBookingStore";
 
-const Footer = ({ serviceId = "", personId = "", date = "", time = "" }: FooterSectionProps) => {
+const Footer = ({ serviceId: serviceIdProp, personId: personIdProp, date: dateProp, time: timeProp }: FooterSectionProps = {}) => {
     const currentURL = usePathname() || "/";
+    const serviceIdContext = useBookingStore((state) => state.serviceId);
+    const personIdContext = useBookingStore((state) => state.personId);
+    const dateContext = useBookingStore((state) => state.date);
+    const timeContext = useBookingStore((state) => state.time);
+    
+    // On date page, always use props (even if null) to respect actual selection state
+    // Otherwise use context values, fallback to props for backward compatibility
+    const serviceId = currentURL === "/date" && serviceIdProp !== undefined ? serviceIdProp : (serviceIdContext || serviceIdProp || "");
+    const personId = currentURL === "/date" && personIdProp !== undefined ? personIdProp : (personIdContext || personIdProp || "");
+    const date = currentURL === "/date" && dateProp !== undefined ? dateProp : (dateContext || dateProp || null);
+    const time = currentURL === "/date" && timeProp !== undefined ? timeProp : (timeContext || timeProp || null);
 
     const service = services.find((s) => serviceId == s.id);
     const serviceTimeRaw = service?.duration ?? "";
     const servicePrice = parseInt(service?.price ?? "");
 
     function timeFormatter(givenTime: string) {
-        const [goo, some] = givenTime.split(":");
-        const hours = parseInt(goo);
-        const minutes = parseInt(some);
-        return [hours, minutes];
+        const [h, m] = givenTime.split(":");
+        const hours = parseInt(h, 10);
+        const minutes = parseInt(m, 10);
+        let textHours = "";
+        let textMinutes = "";
+        if (hours > 0) {
+            textHours = `${hours} h`;
+        }
+        if (minutes > 0) {
+            textMinutes = `${minutes} min`;
+        }
+        return [textHours, textMinutes];
     }
     const [serviceHours, serviceMinutes] = timeFormatter(serviceTimeRaw);
 
     const getNextPage: Record<string, [string, string]> = {
-        "/service": [`/staff?selectedId=${serviceId}`, "To Staff"],
-        "/staff": [`/date?selectedId=${serviceId}&personId=${personId}`, "To Date"],
-        "/date": [`/overview?selectedId=${serviceId}&personId=${personId}&date=${date}&time=${time}`, "To Overview"],
+        "/service": ["/staff", "Continue"],
+        "/staff": ["/date", "Select Date and Time"],
+        "/date": ["/overview", "To Overview"],
+        "/overview": ["/", "Book"],
     };
 
     const [link, content] = getNextPage[currentURL] ?? ["/service?", "To Continue"];
-    if (
+    const isReady =
         (currentURL == "/service" && serviceId != "") ||
         (currentURL == "/staff" && personId != "") ||
-        (currentURL == "/date" && date != null && time != null)
-    ) {
-        return (
-            <div className="fixed bottom-0 px-200 left-0 w-full bg-neutral-900 text-white shadow-lg p-4 flex flex-col  items-center justify-between gap-4 z-50">
-                <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-                    <span className="text-sm text-gray-400">
-                        {serviceHours}h {serviceMinutes}min
-                    </span>
+        (currentURL == "/date" && date != null && time != null) ||
+        currentURL == "/overview";
+
+    // Footer should be at the bottom of the screen (viewport), and only pop up when ready.
+    if (!isReady) return null;
+
+    return (
+        <div
+            className="fixed bottom-0 left-0 right-0 z-50 flex justify-center px-0"
+        >
+            <div
+                className="w-full max-w-150 bg-white flex flex-col gap-4 pt-4 pb-6 border-t border-neutral-200 shadow-[0_-4px_20px_rgba(0,0,0,0.12)] rounded-t-3xl"
+            >
+                {/* Summary Section */}
+                <div className="flex flex-row justify-between items-center px-6">
+                    <div className="flex flex-col">
+                        <span className="text-xs text-neutral-500 uppercase tracking-wide">Duration</span>
+                        <span className="text-lg font-bold text-neutral-900">
+                            {serviceHours} {serviceMinutes}
+                        </span>
+                    </div>
+                    <div className="flex flex-col items-end">
+                        <span className="text-xs text-neutral-500 uppercase tracking-wide">Total</span>
+                        <span className="text-lg font-bold text-neutral-900">{servicePrice} €</span>
+                    </div>
                 </div>
-                <span className="font-semibold text-lg">{servicePrice} €</span>
-                <FooterButton linkTo={link} contentButton={content} />
+
+                {/* Divider */}
+                <div className="border-t border-neutral-100 mx-6"></div>
+
+                {/* Button */}
+                <div className="px-6">
+                    <FooterButton linkTo={link} contentButton={content} />
+                </div>
             </div>
-        );
-    }
-    return null;
+        </div>
+    );
 };
 
 export default Footer;

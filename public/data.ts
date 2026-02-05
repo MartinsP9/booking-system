@@ -1,3 +1,5 @@
+import { Person } from "@/lib/types";
+
 export const services = [
     {
         "id": "s1",
@@ -15,7 +17,7 @@ export const services = [
         "image": "haircoloring-img.png",
         "imagealt": "Person getting hair dye applied",
         "price": "70",
-        "duration": "02:00"
+        "duration": "01:30"
     },
     {
         "id": "s3",
@@ -33,7 +35,7 @@ export const services = [
         "image": "beardtrim-img.png",
         "imagealt": "Barber trimming beard",
         "price": "25",
-        "duration": "00:15"
+        "duration": "00:25"
     },
     {
         "id": "s5",
@@ -51,86 +53,164 @@ export const services = [
         "image": "kido-img.png",
         "imagealt": "Foot massage and pedicure",
         "price": "50",
-        "duration": "01:00"
+        "duration": "01:15"
     }
 ]
 
-export const staff = [
+export const staff: Person[] = [
     {
         "id": "ga1",
         "name": "Gatis Kandis",
         "languages": ["Latvian","English","Russian"],
         "serviceIds": ["s1", "s2"],
-        "shiftStart": ['13:00'],
-        "shiftEnd": ['18:00'],
-        "offDates": ['2026-01-25', '2026-02-02'],
-        "offDays": [6,0],
-        "bookedTimes": [{'date': '2026-01-26', 'reservedTimes': ['13:00', '13:45']}, {'date': '2026-01-28', 'reservedTimes': ['13:00', '13:45']}],
+        "isActive": true,
+        "shifts": {
+            1: { start: '13:00', end: '18:00' },
+            2: { start: '13:00', end: '18:00' },
+            3: { start: '13:00', end: '18:00' },
+            4: { start: '13:00', end: '18:00' },
+            5: { start: '13:00', end: '18:00' },
+            6: null,
+            0: null
+        },
+        "offDates": ['2026-01-29', '2026-02-05'],
+        "events": [
+            {
+                start: '2026-01-29T13:00:00',
+                end: '2026-01-29T13:45:00',
+                user: { name: 'John Doe' },
+                serviceId: 's1'
+            },
+            {
+                start: '2026-01-28T13:00:00',
+                end: '2026-01-28T13:45:00',
+                user: { name: 'Jane Doe' },
+                serviceId: 's1'
+            }
+        ],
     },
     {
         "id": "ga2",
         "name": "Gatis Andis",
         "languages": ["Latvian","English","Russian"],
         "serviceIds": ["s2", "s3"],
-        "shiftStart": ['14:00'],
-        "shiftEnd": ['18:00'],
-        "offDates": ['2026-01-25', '2026-02-02'],
-        "offDays": [6, 0],
-        "bookedTimes": [{'date': '2026-01-26', 'reservedTimes': ['13:00', '14:00']}, {'date': '2026-01-28', 'reservedTimes': ['13:00', '14:00']}],
+        "isActive": true,
+        "shifts": {
+            1: { start: '14:00', end: '18:00' },
+            2: { start: '14:00', end: '18:00' },
+            3: { start: '14:00', end: '18:00' },
+            4: { start: '14:00', end: '18:00' },
+            5: { start: '14:00', end: '18:00' },
+            6: null,
+            0: null
+        },
+        "offDates": ['2026-01-29', '2026-02-02'],
+        "events": [
+            {
+                start: '2026-01-29T13:00:00',
+                end: '2026-01-29T14:00:00',
+                user: { name: 'Alice' },
+                serviceId: 's2'
+            },
+            {
+                start: '2026-01-28T13:00:00',
+                end: '2026-01-28T14:00:00',
+                user: { name: 'Bob' },
+                serviceId: 's2'
+            }
+        ],
     },
-    
     {
         "id": "ga3",
         "name": "Gatis nDis",
         "languages": ["Latvian", "Russian"],
         "serviceIds": ["s3", "s4"],
-        "shiftStart": ['15:00'],
-        "shiftEnd": ['18:00'],
-        "offDates": ['2026-01-25', '2026-02-03'],
-        "offDays": [6,0],
-        "bookedTimes": [{'date': '2026-01-26', 'reservedTimes': ['13:00', '14:00']}, {'date': '2026-01-28', 'reservedTimes': ['13:00', '14:00']}],
+        "isActive": true,
+        "shifts": {
+            1: { start: '15:00', end: '18:00' },
+            2: { start: '15:00', end: '18:00' },
+            3: { start: '15:00', end: '18:00' },
+            4: { start: '15:00', end: '18:00' },
+            5: { start: '15:00', end: '18:00' },
+            6: null,
+            0: null
+        },
+        "offDates": ['2026-01-28', '2026-02-03'],
+        "events": [
+            {
+                start: '2026-01-29T13:00:00',
+                end: '2026-01-29T14:00:00',
+                user: { name: 'Charlie' },
+                serviceId: 's3'
+            },
+            {
+                start: '2026-01-28T13:00:00',
+                end: '2026-01-28T14:00:00',
+                user: { name: 'David' },
+                serviceId: 's3'
+            }
+        ],
     },
     {
         "id": "ga4",
         "name": "Gatis Dis",
         "languages": ["Latvian","English","Russian"],
         "serviceIds": ["s4", "s5"],
-        "shiftStart": ['16:00'],
-        "shiftEnd": ['18:00'],
-        "offDates": ['2026-01-25', '2026-02-04'],
-        "offDays": [6,0],
-        "bookedTimes": [{'date': '2026-01-26', 'reservedTimes': ['13:00', '14:00']}, {'date': '2026-01-28', 'reservedTimes': ['13:00', '14:00']}],
+        "isActive": true,
+        "shifts": {
+            1: { start: '16:00', end: '18:00' },
+            2: { start: '16:00', end: '18:00' },
+            3: { start: '16:00', end: '18:00' },
+            4: { start: '16:00', end: '18:00' },
+            5: { start: '16:00', end: '18:00' },
+            6: null,
+            0: null
+        },
+        "offDates": ['2026-01-28', '2026-02-04'],
+        "events": [
+            {
+                start: '2026-01-29T13:00:00',
+                end: '2026-01-29T14:00:00',
+                user: { name: 'Eve' },
+                serviceId: 's4'
+            },
+            {
+                start: '2026-01-28T13:00:00',
+                end: '2026-01-28T14:00:00',
+                user: { name: 'Frank' },
+                serviceId: 's4'
+            }
+        ],
     },
     {
         "id": "ga5",
         "name": "Gatis Is",
         "languages": ["Latvian","English"],
         "serviceIds": ["s5", "s6"],
-        "shiftStart": ['15:00'],
-        "shiftEnd": ['18:00'],
-        "offDates": ['2026-01-25', '2026-02-05'],
-        "offDays": [6,0],
-        "bookedTimes": [{'date': '2026-01-26', 'reservedTimes': ['13:00', '14:00']}, {'date': '2026-01-28', 'reservedTimes': ['13:00', '14:00']}],
-    // bookedDates
+        "isActive": true,
+        "shifts": {
+            1: { start: '15:00', end: '18:00' },
+            2: { start: '15:00', end: '18:00' },
+            3: { start: '15:00', end: '18:00' },
+            4: { start: '15:00', end: '18:00' },
+            5: { start: '15:00', end: '18:00' },
+            6: null,
+            0: null
+        },
+        "offDates": ['2026-01-28', '2026-02-05'],
+        "events": [
+            {
+                start: '2026-01-29T13:00:00',
+                end: '2026-01-29T14:00:00',
+                user: { name: 'Grace' },
+                serviceId: 's5'
+            },
+            {
+                start: '2026-01-28T13:00:00',
+                end: '2026-01-28T14:00:00',
+                user: { name: 'Heidi' },
+                serviceId: 's5'
+            }
+        ],
     },
 ]
-
-//  SERVICE
-//     - id
-//     - title
-//     - description
-//     - image
-//     - image alt
-//     - duration
-//     - price
-
-//  PERSON
-//     - id
-//     - name
-//     - surname
-//     - description ??
-//     - languages
-//     - services
-//     - work/off days
-//     - shift times
-//     - booked times

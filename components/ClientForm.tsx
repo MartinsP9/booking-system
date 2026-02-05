@@ -1,8 +1,11 @@
-import React from "react";
-
 const ClientForm = () => {
     return (
-        <div className="max-w-md mx-auto mt-5 bg-white rounded-2xl shadow-sm border border-gray-200">
+        <form
+            className="w-full max-w-[560px] mx-auto mt-5 bg-white rounded-2xl shadow-sm border border-gray-200"
+            onSubmit={(e) => {
+                e.preventDefault();
+            }}
+        >
             <div className="px-6 py-4 border-b border-gray-200">
                 <h2 className="text-lg font-semibold text-gray-900">Personal Information</h2>
             </div>
@@ -48,30 +51,30 @@ const ClientForm = () => {
                     />
                 </div>
 
-                {/* <div className="flex items-center justify-between pt-2">
-                    <div>
-                        <p className="text-sm text-gray-500">Reminder</p>
-                        <p className="text-sm font-medium text-gray-900">Per 2 hours prior to visit</p>
-                    </div>
-
-                    <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                    </svg>
-                </div> */}
-
                 <div className="pt-3 border-t border-gray-200"></div>
 
                 <div className="flex items-start gap-3">
                     <input type="checkbox" className="mt-1 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
                     <p className="text-sm text-gray-700 leading-snug">
-                        I agree to the processing of my personal data and confirm that I have read and accepted the
+                        I agree to the processing of my personal data and confirm that I have read and accepted the&nbsp;s
                         <span className="text-blue-600 underline cursor-pointer">Privacy Policy</span>
-                        and
+                        &nbsp;and&nbsp;
                         <span className="text-blue-600 underline cursor-pointer">User Agreement</span>
                     </p>
                 </div>
+
+                <button
+                    type="submit"
+                    className="
+                        w-full rounded-2xl bg-emerald-900 text-white
+                        py-3 text-sm font-medium
+                        hover:bg-emerald-950 transition
+                    "
+                >
+                    Submit booking
+                </button>
             </div>
-        </div>
+        </form>
     );
 };
 
