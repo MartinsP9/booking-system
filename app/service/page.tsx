@@ -9,7 +9,7 @@ import { useBooking } from "@/lib/BookingContext";
 const Service = () => {
     const [activeIndex, setActiveIndex] = useState<string>("");
     const { setServiceId } = useBooking();
-    
+
     const chooseThis = (id: string) => {
         console.log(id);
         if (activeIndex == id) {
