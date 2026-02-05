@@ -44,16 +44,17 @@ export default function PickTime({ selectedDate, time, setTime }: PickTimeProps)
         return duration;
     }
     const duration = getShortestService();
-    
 
     // If a reserved time can't be clicked, it also shouldn't be displayed.
     const toHHmm = (t: string) => t.slice(0, 5);
-    const data = getTimeRange({ startTime: shiftStart, endTime: shiftEnd, interval: duration}).map(toHHmm).filter((t) => !bookedTimes?.includes(t));
-    
+    const data = getTimeRange({ startTime: shiftStart, endTime: shiftEnd, interval: duration })
+        .map(toHHmm)
+        .filter((t) => !bookedTimes?.includes(t));
+
     return (
-        <div className="w-full max-w-[560px] mx-auto bg-white rounded-2xl shadow-lg border border-neutral-200 overflow-hidden">
+        <div className="w-full max-w-560px mx-auto bg-white rounded-2xl shadow-lg border border-neutral-200 overflow-hidden">
             {/* Header */}
-            <div className="px-6 py-5 bg-gradient-to-r from-neutral-50 to-white border-b border-neutral-200">
+            <div className="px-6 py-5 bg-linear-to-r from-neutral-50 to-white border-b border-neutral-200">
                 <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-neutral-100 flex items-center justify-center">
                         <ClockIcon className="w-5 h-5 text-neutral-600" />
