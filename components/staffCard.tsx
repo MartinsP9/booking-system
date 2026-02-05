@@ -13,13 +13,13 @@ const StaffCard = ({ name, languages, onPersonClick, isActive = false }: Partial
 
     return (
         <div
-            className={`w-full max-w-[560px] bg-white rounded-2xl shadow-md overflow-hidden mx-auto flex flex-row
+            className={`w-full max-w-560px bg-white rounded-2xl shadow-md overflow-hidden mx-auto flex flex-row
                 transition-all duration-200 cursor-pointer
                 ${isActive ? "border-2 border-emerald-500" : "border-2 border-white"}`}
             onClick={onPersonClick}
         >
             {/* Left side - Avatar */}
-            <div className="w-24 h-24 flex-shrink-0 bg-neutral-100 flex items-center justify-center">
+            <div className="w-24 h-24 shrink-0 bg-neutral-100 flex items-center justify-center">
                 <div className="h-16 w-16 rounded-full bg-white shadow-sm border border-neutral-200 flex items-center justify-center">
                     <span className="text-neutral-900 text-lg font-semibold">{initials}</span>
                 </div>

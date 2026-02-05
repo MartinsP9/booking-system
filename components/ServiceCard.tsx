@@ -4,7 +4,7 @@ import { ServiceCardProps } from "@/lib/types";
 const ServiceCard = ({ onCardClick, title, image, imagealt, text, price, isActive = false }: ServiceCardProps) => {
     return (
         <div
-            className={`w-full max-w-[420px] bg-white rounded-2xl shadow-md overflow-hidden mx-auto flex flex-col
+            className={`w-full max-w-420px bg-white rounded-2xl shadow-md overflow-hidden mx-auto flex flex-col
                 transition-all duration-200 cursor-pointer
                 ${isActive ? "border-2 border-emerald-500" : "border-2 border-white"}`}
             onClick={onCardClick}
