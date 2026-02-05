@@ -5,11 +5,16 @@ import PickTime from "@/components/TimePicker";
 import Footer from "@/components/Footer";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import { useBooking } from "@/lib/BookingContext";
+import { useBookingStore } from "@/lib/useBookingStore";
 
 export default function Date() {
     const router = useRouter();
-    const { serviceId, personId, date: contextDate, time: contextTime, setDate: setContextDate, setTime: setContextTime } = useBooking();
+    const serviceId = useBookingStore((state) => state.serviceId);
+    const personId = useBookingStore((state) => state.personId);
+    const contextDate = useBookingStore((state) => state.date);
+    const contextTime = useBookingStore((state) => state.time);
+    const setContextDate = useBookingStore((state) => state.setDate);
+    const setContextTime = useBookingStore((state) => state.setTime);
     const [date, setDate] = useState<string | null>(null);
     const [time, setTime] = useState<string | null>(null);
     const [hasSelectedDate, setHasSelectedDate] = useState(false);

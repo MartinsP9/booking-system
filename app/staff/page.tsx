@@ -5,11 +5,12 @@ import { staff } from "@/public/data";
 import StaffCard from "@/components/staffCard";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import { useBooking } from "@/lib/BookingContext";
+import { useBookingStore } from "@/lib/useBookingStore";
 
 const Staff = () => {
     const router = useRouter();
-    const { serviceId, setPersonId } = useBooking();
+    const serviceId = useBookingStore((state) => state.serviceId);
+    const setPersonId = useBookingStore((state) => state.setPersonId);
     const availableStaff = staff.filter((person) => serviceId && person.serviceIds.includes(serviceId));
 
     const [activeIndex, setActiveIndex] = useState<string>("");

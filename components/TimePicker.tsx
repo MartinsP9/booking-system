@@ -2,7 +2,7 @@
 
 import { staff } from "@/public/data";
 import { getTimeRange, TimeGrid } from "@mantine/dates";
-import { useBooking } from "@/lib/BookingContext";
+import { useBookingStore } from "@/lib/useBookingStore";
 import { services } from "@/public/data";
 import { PickTimeProps } from "@/lib/types";
 import { ClockIcon } from "@/components/icons";
@@ -11,7 +11,8 @@ export default function PickTime({ selectedDate, time, setTime }: PickTimeProps)
     // Don't allow picking a time before a date is chosen
     if (!selectedDate) return null;
 
-    const { personId, serviceId } = useBooking();
+    const personId = useBookingStore((state) => state.personId);
+    const serviceId = useBookingStore((state) => state.serviceId);
     const person = staff.find((p) => p.id === personId);
     const [y, m, d] = selectedDate ? selectedDate.split("-").map(Number) : [0, 0, 0];
     const dayOfWeek = selectedDate ? new Date(y, m - 1, d).getDay() : 0;

@@ -4,11 +4,11 @@ import ServiceCard from "@/components/ServiceCard";
 import Footer from "../../components/Footer";
 import { services } from "../../public/data";
 import { useState } from "react";
-import { useBooking } from "@/lib/BookingContext";
+import { useBookingStore } from "@/lib/useBookingStore";
 
 const Service = () => {
     const [activeIndex, setActiveIndex] = useState<string>("");
-    const { setServiceId } = useBooking();
+    const setServiceId = useBookingStore((state) => state.setServiceId);
     
     const chooseThis = (id: string) => {
         console.log(id);

@@ -5,11 +5,11 @@ import { DatePicker } from "@mantine/dates";
 import { Stack, Text } from "@mantine/core";
 import { staff } from "@/public/data";
 import { PickDateProps } from "@/lib/types";
-import { useBooking } from "@/lib/BookingContext";
+import { useBookingStore } from "@/lib/useBookingStore";
 import { CalendarIcon, ChevronDownIcon } from "@/components/icons";
 
 export default function PickDate({ value, onChange }: PickDateProps) {
-    const { personId } = useBooking();
+    const personId = useBookingStore((state) => state.personId);
     const person = staff.find((p) => p.id === personId);
     const forwardMonth = new Date();
     forwardMonth.setMonth(forwardMonth.getMonth() + 2);

@@ -56,9 +56,9 @@ const ClientForm = () => {
                 <div className="flex items-start gap-3">
                     <input type="checkbox" className="mt-1 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
                     <p className="text-sm text-gray-700 leading-snug">
-                        I agree to the processing of my personal data and confirm that I have read and accepted the
+                        I agree to the processing of my personal data and confirm that I have read and accepted the&nbsp;s
                         <span className="text-blue-600 underline cursor-pointer">Privacy Policy</span>
-                        and
+                        &nbsp;and&nbsp;
                         <span className="text-blue-600 underline cursor-pointer">User Agreement</span>
                     </p>
                 </div>

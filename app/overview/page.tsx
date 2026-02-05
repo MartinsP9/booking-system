@@ -4,11 +4,14 @@ import BookingOverview from "@/components/BookingOverview";
 import ClientForm from "@/components/ClientForm";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { useBooking } from "@/lib/BookingContext";
+import { useBookingStore } from "@/lib/useBookingStore";
 
 const Overview = () => {
     const router = useRouter();
-    const { serviceId, personId, date, time } = useBooking();
+    const serviceId = useBookingStore((state) => state.serviceId);
+    const personId = useBookingStore((state) => state.personId);
+    const date = useBookingStore((state) => state.date);
+    const time = useBookingStore((state) => state.time);
 
     useEffect(() => {
         if (!serviceId) {

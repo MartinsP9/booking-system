@@ -4,11 +4,14 @@ import FooterButton from "./FooterButton";
 import { usePathname } from "next/navigation";
 import { FooterSectionProps } from "@/lib/types";
 import { services, staff } from "@/public/data";
-import { useBooking } from "@/lib/BookingContext";
+import { useBookingStore } from "@/lib/useBookingStore";
 
 const Footer = ({ serviceId: serviceIdProp, personId: personIdProp, date: dateProp, time: timeProp }: FooterSectionProps = {}) => {
     const currentURL = usePathname() || "/";
-    const { serviceId: serviceIdContext, personId: personIdContext, date: dateContext, time: timeContext } = useBooking();
+    const serviceIdContext = useBookingStore((state) => state.serviceId);
+    const personIdContext = useBookingStore((state) => state.personId);
+    const dateContext = useBookingStore((state) => state.date);
+    const timeContext = useBookingStore((state) => state.time);
     
     // On date page, always use props (even if null) to respect actual selection state
     // Otherwise use context values, fallback to props for backward compatibility
