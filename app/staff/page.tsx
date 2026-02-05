@@ -22,7 +22,6 @@ const Staff = () => {
     }, [serviceId, router]);
 
     const chooseThis = (id: string) => {
-        console.log(id);
         if (activeIndex == id) {
             setActiveIndex("");
             setPersonId(null);

@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { useRouter } from "next/navigation";
 import { OverviewProps } from "@/lib/types";
 import { services, staff } from "@/public/data";

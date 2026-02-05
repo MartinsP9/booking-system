@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { DatePicker } from "@mantine/dates";
-import { Stack, Text } from "@mantine/core";
 import { staff } from "@/public/data";
 import { PickDateProps } from "@/lib/types";
 import { useBookingStore } from "@/lib/useBookingStore";

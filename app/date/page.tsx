@@ -11,8 +11,6 @@ export default function Date() {
     const router = useRouter();
     const serviceId = useBookingStore((state) => state.serviceId);
     const personId = useBookingStore((state) => state.personId);
-    const contextDate = useBookingStore((state) => state.date);
-    const contextTime = useBookingStore((state) => state.time);
     const setContextDate = useBookingStore((state) => state.setDate);
     const setContextTime = useBookingStore((state) => state.setTime);
     const [date, setDate] = useState<string | null>(null);

@@ -11,7 +11,6 @@ const Service = () => {
     const setServiceId = useBookingStore((state) => state.setServiceId);
     
     const chooseThis = (id: string) => {
-        console.log(id);
         if (activeIndex == id) {
             setActiveIndex("");
             setServiceId(null);

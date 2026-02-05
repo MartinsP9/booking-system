@@ -16,8 +16,12 @@ const Overview = () => {
     useEffect(() => {
         if (!serviceId) {
             router.push("/service");
+        } else if (!personId) {
+            router.push("/staff");
+        }else if (!date || !time) {
+            router.push("/date");
         }
-    }, [serviceId, router]);
+    }, [serviceId, personId, date, time, router]);
 
     return (
         <main className="min-h-screen bg-neutral-200 pt-10 flex justify-center">
